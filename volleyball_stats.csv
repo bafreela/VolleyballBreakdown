@@ -1,26 +1,26 @@
-Player,ID,Position,Hititng,Passing,Setting,Serving,Blocking
-Brock F,1,Hitter,9,6,6,8,9
-Elizabeth T,2,Passer,8,9,6,9,7
-Elizabeth L,3,Passer,5,8,4,8,6
-Kate Z,4,Setter,6,7,9,9,6
-Mike B,5,Setter,5,7,5,6,6
-Stephanie J,6,Setter,7,6,8,8,6
-Haley F,7,Hitter,8,7,6,7,7
-Christina S,8,Passer,3,5,4,3,3
-Kenisha D,9,Hitter,8,6,4,7,8
-Sofia S,10,Passer,2,4,3,3,1
-Matt M,11,Hitter,6,5,3,6,8
-Kevin K,12,Hitter,6,5,3,5,6
-Jalal N,13,Hitter,5,4,3,4,5
-Sianna S,14,Passer,2,2,2,3,1
-Theyab N,15,Hitter,8,5,4,4,8
-Oscar M,16,Passer,4,4,3,5,5
-Alex B,17,Hitter,8,6,5,7,8
-Anna C,18,Passer,5,5,5,5,5
-Ivan M,19,Hitter,7,6,3,6,7
-Allen P,20,Hitter,6,4,2,5,6
-Frank B,21,Setter,6,5,6,5,6
-Kevin J,22,Hitter,6,4,4,4,6
-Danielle N,23,Passer,4,4,5,5,3
-Madeline N,24,Passer,4,4,4,5,3
-Mason A,25,Hitter,7,6,6,9,7
+ID,Gender,Position,Hititng,Passing,Setting,Serving,Blocking
+1,M,Hitter,9,6,6,8,9
+2,F,Passer,8,9,6,9,7
+3,F,Passer,5,8,4,8,6
+4,F,Setter,6,7,9,9,6
+5,M,Setter,5,7,5,6,6
+6,F,Setter,7,6,8,8,6
+7,F,Hitter,8,7,6,7,7
+8,F,Passer,3,5,4,3,3
+9,F,Hitter,8,6,4,7,8
+10,F,Passer,2,4,3,3,1
+11,M,Hitter,6,5,3,6,8
+12,M,Hitter,6,5,3,5,6
+13,M,Hitter,5,4,3,4,5
+14,F,Passer,2,2,2,3,1
+15,M,Hitter,8,5,4,4,8
+16,M,Passer,4,4,3,5,5
+17,M,Hitter,8,6,5,7,8
+18,F,Passer,5,5,5,5,5
+19,M,Hitter,7,6,3,6,7
+20,M,Hitter,6,4,2,5,6
+21,M,Setter,6,5,6,5,6
+22,M,Hitter,6,4,4,4,6
+23,F,Passer,4,4,5,5,3
+24,F,Passer,4,4,4,5,3
+25,M,Hitter,7,6,6,9,7
