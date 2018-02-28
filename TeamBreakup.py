@@ -59,7 +59,7 @@ def positionsDictionary():
     for line in stats: #iterates through each line of the csv file 
         field = line.split(",") #splits them by commas in order to read individual data entries 
         names.append(field[0]) #appends specific column to assigned list
-        positions.append(field[2])
+        positions.append(field[2])   
     Names_Pos = dict(zip(names,positions)) # creates dictionary with parallel lists
     return Names_Pos
 
@@ -78,10 +78,24 @@ def totalDictionary():
         field = line.split(",")
         names.append(field[0]) #appends specific column to assigned list
         total.append(float(field[3])+float(field[4])+float(field[5]) + \
-                     float(field[6])+float(field[7])) #adds up each skill ranking in the dataset, to create a total score for volleyball ability
+                     float(field[6])+float(field[7])+float(field[8])+ \
+                     float(field[9])+ float(field[10]) + float(field[11])) #adds up each skill ranking in the dataset, to create a total score for volleyball ability
     selectionSort(total,names) #calls selection sort function to sort the players based on total computed skill
     Names_Total = dict(zip(names,total)) # creates dictionary with parallel lists
     return Names_Total
+
+def genderDictionary():
+    stats = open('volleyball_stats.csv', 'r', encoding="utf-8") #imports csv file 
+    names = [] #creates empty lists
+    gender = []
+    line = stats.readline() #removes headers
+    for line in stats: #iterates through each line of the csv file 
+        field = line.split(",") #splits them by commas in order to read individual data entries 
+        names.append(field[0]) #appends specific column to assigned list
+        gender.append(field[1])   
+    Names_Gen = dict(zip(names,gender)) # creates dictionary with parallel lists
+    return Names_Gen
+
 
 def rankedPositions(team1,team2):
     """
@@ -96,43 +110,80 @@ def rankedPositions(team1,team2):
 #imports created dictionaries earlier in program
     Names_Pos = positionsDictionary()
     Names_Total = totalDictionary()
-    Ordered_Total = dict(Names_Total)
+    Names_Gen = genderDictionary()
+    Ordered_Total = dict(Names_Total)   
+    
 #creates empty lists
-    Hitters = []
-    Setters = []
-    Passers = []
-
-    Ranked_Hitters = []
-    Ranked_Setters = []
-    Ranked_Passers = []
-
-
+    M_Hitters = []
+    F_Hitters = []
+    M_Setters = []
+    F_Setters = []
+    M_Passers = []
+    F_Passers = []
+    
+        
+    Ranked_M_Hitters = []
+    Ranked_F_Hitters = []
+    Ranked_M_Setters = []
+    Ranked_F_Setters = []
+    Ranked_M_Passers = []
+    Ranked_F_Passers = []
+    
+    
 #iterates through position dictionary to make lists of names broken down by position 
     for index in Names_Pos:
         if Names_Pos[index] == "Hitter":
-            Hitters.append(index)
+                if Names_Gen[index] == "M":
+                    M_Hitters.append(index)
+                else:
+                    F_Hitters.append(index)
+   
+               
 #iterates through ordered dictionary, if name is found in position dictionary, appends to ranked positional list. This ensures that the ranked list will be based on sorted total values for each player
     for index in Ordered_Total:
-        if index in Hitters:
-            Ranked_Hitters.append(index)
-    breakup(Ranked_Hitters,team1,team2) #calls breakup function with ranked list, and the two team lists
-#same process as previous segment, just a different position
-    for index in Names_Pos:
-        if Names_Pos[index] == "Setter":
-            Setters.append(index)
+        if index in M_Hitters:
+            Ranked_M_Hitters.append(index)
+   
     for index in Ordered_Total:
-        if index in Setters:
-            Ranked_Setters.append(index)
-    breakup(Ranked_Setters,team1,team2)
+        if index in F_Hitters:
+            Ranked_F_Hitters.append(index)   
+           
+    print(Ranked_F_Hitters)
+    #breakup(Ranked_M_Hitters,team1,team2) #calls breakup function with ranked list, and the two team lists
+    breakup(Ranked_F_Hitters,team1,team2)
+
+##same process as previous segment, just a different position
+#    for index in Names_Pos:
+#        if Names_Pos[index] == "Setter":
+#                if Names_Gen[index] == "M":
+#                    M_Setters.append(index)
+#
+#                else:
+#                    F_Setters.append(index)
+#    for index in Ordered_Total:
+#        if index in M_Setters:
+#            Ranked_M_Setters.append(index)
+#        else:
+#            Ranked_F_Setters.append(index)
+#    print(Ranked_M_Setters,Ranked_F_Setters)
+#    breakup(Ranked_M_Setters,team1,team2)
+#    breakup(Ranked_F_Setters,team1,team2)
 
 #same process as previous segment, just a different position
-    for index in Names_Pos:
-        if Names_Pos[index] == "Passer":
-            Passers.append(index)
-    for index in Ordered_Total:
-        if index in Passers:
-            Ranked_Passers.append(index)
-    breakup(Ranked_Passers,team1,team2)
+#    for index in Names_Pos:
+#        if Names_Pos[index] == "Passer":
+#                if Names_Gen[index] == "M":
+#                    M_Passers.append(index)
+#                else:
+#                    F_Passers.append(index)
+#            
+#    for index in Ordered_Total:
+#        if index in M_Passers:
+#            Ranked_M_Passers.append(index)
+#        else:
+#            Ranked_F_Passers.append(index)
+#    breakup(Ranked_M_Passers,team1,team2)
+#    breakup(Ranked_F_Passers,team1,team2)
 
 
 def breakup(data,team1,team2):
@@ -178,6 +229,7 @@ def breakup(data,team1,team2):
                 bottom_top.append(bottom[index])
 
 # calls distribute function with created sub lists, and the two team lists
+
         distribute(top_top,team1,team2) 
         distribute(top_bottom,team1,team2) 
         distribute(bottom_bottom,team1,team2) 
@@ -211,6 +263,8 @@ def distribute(data,team1,team2):
                 else:
                     team2.append(data[n])
                     count = count +1
+                
+    
     else: #if length of data is even
 #same process as previous loop 
          while count<len(data)//2+1:
@@ -233,6 +287,7 @@ def main():
  #prints teams in an organized way
     print("Team 1: ",team1) 
     print("Team 2: ",team2)
+    
 
 
 main()
