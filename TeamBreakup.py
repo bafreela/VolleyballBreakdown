@@ -137,9 +137,9 @@ def rankedPositions(team1,team2):
                     M_Hitters.append(index)
                 else:
                     F_Hitters.append(index)
-   
-               
-#iterates through ordered dictionary, if name is found in position dictionary, appends to ranked positional list. This ensures that the ranked list will be based on sorted total values for each player
+#   
+#               
+##iterates through ordered dictionary, if name is found in position dictionary, appends to ranked positional list. This ensures that the ranked list will be based on sorted total values for each player
     for index in Ordered_Total:
         if index in M_Hitters:
             Ranked_M_Hitters.append(index)
@@ -148,42 +148,47 @@ def rankedPositions(team1,team2):
         if index in F_Hitters:
             Ranked_F_Hitters.append(index)   
            
-    print(Ranked_F_Hitters)
-    #breakup(Ranked_M_Hitters,team1,team2) #calls breakup function with ranked list, and the two team lists
+    
+    breakup(Ranked_M_Hitters,team1,team2) #calls breakup function with ranked list, and the two team lists
     breakup(Ranked_F_Hitters,team1,team2)
 
-##same process as previous segment, just a different position
-#    for index in Names_Pos:
-#        if Names_Pos[index] == "Setter":
-#                if Names_Gen[index] == "M":
-#                    M_Setters.append(index)
-#
-#                else:
-#                    F_Setters.append(index)
-#    for index in Ordered_Total:
-#        if index in M_Setters:
-#            Ranked_M_Setters.append(index)
-#        else:
-#            Ranked_F_Setters.append(index)
-#    print(Ranked_M_Setters,Ranked_F_Setters)
-#    breakup(Ranked_M_Setters,team1,team2)
-#    breakup(Ranked_F_Setters,team1,team2)
+#same process as previous segment, just a different position
+    for index in Names_Pos:
+        if Names_Pos[index] == "Setter":
+                if Names_Gen[index] == "M":
+                    M_Setters.append(index)
+
+                else:
+                    F_Setters.append(index)
+    for index in Ordered_Total:
+        if index in M_Setters:
+            Ranked_M_Setters.append(index)
+    
+    for index in Ordered_Total:
+        if index in F_Setters:
+            Ranked_F_Setters.append(index)
+    
+    breakup(Ranked_M_Setters,team1,team2)
+    breakup(Ranked_F_Setters,team1,team2)
 
 #same process as previous segment, just a different position
-#    for index in Names_Pos:
-#        if Names_Pos[index] == "Passer":
-#                if Names_Gen[index] == "M":
-#                    M_Passers.append(index)
-#                else:
-#                    F_Passers.append(index)
-#            
-#    for index in Ordered_Total:
-#        if index in M_Passers:
-#            Ranked_M_Passers.append(index)
-#        else:
-#            Ranked_F_Passers.append(index)
-#    breakup(Ranked_M_Passers,team1,team2)
-#    breakup(Ranked_F_Passers,team1,team2)
+    for index in Names_Pos:
+        if Names_Pos[index] == "Passer":
+                if Names_Gen[index] == "M":
+                    M_Passers.append(index)
+                else:
+                    F_Passers.append(index)
+            
+    for index in Ordered_Total:
+        if index in M_Passers:
+            Ranked_M_Passers.append(index)
+             
+    for index in Ordered_Total:
+        if index in F_Passers:
+            Ranked_F_Passers.append(index) 
+        
+    breakup(Ranked_M_Passers,team1,team2)
+    breakup(Ranked_F_Passers,team1,team2)
 
 
 def breakup(data,team1,team2):
@@ -203,42 +208,45 @@ def breakup(data,team1,team2):
 #creates empty lists
     bottom = [] #bottom half of the players
     top = [] #top half of the players
-    for index in range(n): 
-        if index < mid: #if position is less than the midway point,
-            bottom.append(data[index]) #append the positional value to the list 
-        else:
-            top.append(data[index])
+    if len(data) > 3: #accounts for smaller sets of data 
+        for index in range(n): 
+            if index < mid: #if position is less than the midway point,
+                bottom.append(data[index]) #append the positional value to the list 
+            else:
+                top.append(data[index])
 
 #creates empty lists
-    top_top = [] #highest ranking players of top list
-    top_bottom = [] # lowest ranking players of top list
-    bottom_top = [] #highest ranking players of bottom list
-    bottom_bottom = [] #lowest ranking players of bottom list
+        top_top = [] #highest ranking players of top list
+        top_bottom = [] # lowest ranking players of top list
+        bottom_top = [] #highest ranking players of bottom list
+        bottom_bottom = [] #lowest ranking players of bottom list
 
-    if len(data) >= 8: #if length of data is greater than or equal 8 (largest possible value that could be divided into fourths, and randomized later in program)
-        for index in range(len(top)):
-            if index < len(top)//2: # if position is less than the midpoint of the list, append to list
-                top_bottom.append(top[index])
-            else:
-                top_top.append(top[index])
+        if len(data) >= 8: #if length of data is greater than or equal 8 (largest possible value that could be divided into fourths, and randomized later in program)
+            for index in range(len(top)):
+                if index < len(top)//2: # if position is less than the midpoint of the list, append to list
+                    top_bottom.append(top[index])
+                else:
+                    top_top.append(top[index])
 
-        for index in range(len(bottom)):
-            if index >= len(top)//2: #if position is greater than the midpoint of the list, append to list
-                bottom_bottom.append(bottom[index])
-            else:
-                bottom_top.append(bottom[index])
+            for index in range(len(bottom)):
+                if index >= len(top)//2: #if position is greater than the midpoint of the list, append to list
+                    bottom_bottom.append(bottom[index])
+                else:
+                    bottom_top.append(bottom[index])
 
 # calls distribute function with created sub lists, and the two team lists
 
-        distribute(top_top,team1,team2) 
-        distribute(top_bottom,team1,team2) 
-        distribute(bottom_bottom,team1,team2) 
-        distribute(bottom_top,team1,team2) 
+            distribute(top_top,team1,team2) 
+            distribute(top_bottom,team1,team2) 
+            distribute(bottom_bottom,team1,team2) 
+            distribute(bottom_top,team1,team2) 
 
-    else: 
+        else: 
 # calls distribute function with created sub lists, and the two team lists
-        distribute(top,team1,team2)
-        distribute(bottom,team1,team2)
+            distribute(top,team1,team2)
+            distribute(bottom,team1,team2)
+    else:
+        distribute(data,team1,team2)
 
 def distribute(data,team1,team2):
     """
@@ -252,31 +260,38 @@ def distribute(data,team1,team2):
 
     Return Value: None
     """
-    count = 0 #keeps track of number of appended values 
-    if len(data)%2 ==1: #if length of data is odd
-        while count<=len(data)//2+1: #runs while count is less than half the length of the list, + 1 (since it rounds down)
-            n = random.randint(0,len(data)-1) #creates a random integer within the length of the list
-            if data[n] not in team1 and data[n] not in team2: #if the random position value in the list is not in team 1 or team 2
-                if len(team1) <= len(team2): 
-                    team1.append(data[n])
-                    count = count +1 
-                else:
-                    team2.append(data[n])
-                    count = count +1
+    if len(data) > 1:
+        count = 0 #keeps track of number of appended values 
+        if len(data)%2 ==1: #if length of data is odd
+            while count<=len(data)//2+1: #runs while count is less than half the length of the list, + 1 (since it rounds down)
+                n = random.randint(0,len(data)-1) #creates a random integer within the length of the list
+                if data[n] not in team1 and data[n] not in team2: #if the random position value in the list is not in team 1 or team 2
+                    if len(team1) <= len(team2): 
+                        team1.append(data[n])
+                        count = count +1 
+                    else:
+                        team2.append(data[n])
+                        count = count +1
                 
     
-    else: #if length of data is even
-#same process as previous loop 
-         while count<len(data)//2+1:
-            n = random.randint(0,len(data)-1)
-            if data[n] not in team1 and data[n] not in team2:
-                if len(team1) <= len(team2):
-                    team1.append(data[n])
-                    count = count +1
-                else:
-                    team2.append(data[n])
-                    count = count +1
-
+        else: #if length of data is even
+            #same process as previous loop 
+             while count<len(data)//2+1:
+                 n = random.randint(0,len(data)-1)
+                 if data[n] not in team1 and data[n] not in team2:
+                     if len(team1) <= len(team2):
+                         team1.append(data[n])
+                         count = count +1
+                     else:
+                         team2.append(data[n])
+                         count = count +1
+    
+    elif len(data) > 0:
+        for index in data:
+            team2.append(index)
+    else:
+        return #if the list is empty, want it to do nothing
+        
 
 def main():
 
